@@ -23,8 +23,8 @@ module Workspace
     # Do not swallow errors in after_commit/after_rollback callbacks.
     
     config.generators do |g|
-      generate.helper false
-      generate.assets false
+      g.helper false
+      g.assets false
     end
     config.active_record.raise_in_transactional_callbacks = true
   end
