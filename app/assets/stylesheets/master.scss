@@ -2,3 +2,28 @@ $primary_font: 'Itim', cursive;
 $secondary_font: 'Indie Flower', cursive;
 $tertiary_font: 'Noto Serif', serif;
 
+
+.movie-poster
+{
+    height:auto;
+    width:auto;
+    float: left;
+}
+.movie-detail
+{
+    float: left;
+    margin: 20px;
+    font-family: $tertiary_font;
+}
+
+.movie-detail label{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.movie-detail .title
+{
+    font-family: $primary_font;
+    font-size: 30px;
+    color: #6e36c9;
+}
