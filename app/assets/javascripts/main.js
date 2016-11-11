@@ -46,7 +46,14 @@ $(function(){
                       <label>Rated: </label> <p>${data["Rated"]}</p>
                       <label>Released: </label><p>${data["Released"]}</p>
                       <label>Runtime: </label> <p>${data["Runtime"]}</p>
-            </div>`;
+            </div>
+            <form id="rating-form" action="/reviews" method="POST">
+              <input type="hidden" name="authenticity_token" value=${window._token} />
+              <input type="hidden" name="imdbid" value=${data["imdbID"]} />
+              <textarea name= "review[comment]" class="form-control" placeholder="Your movie review"/>
+              <br />
+              <input type="submit" class="btn btn-success pull-right" />
+            </form>`;
         container1.append(htmlString1);
     }
     
