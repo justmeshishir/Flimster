@@ -12,12 +12,18 @@
         </div>
       </form>
     </div>
-
   </div>
 
   <div class="col-xs-12 col-md-8">
     <div id="movies">
-
+    </div>
+    <div id="reviewed-movies">
+            <% @movies.each do |m| %>
+                <%= link_to movie_path(m.id) do %>
+                   <%= image_tag m.poster, class:"reviewed-movies-img" %>
+                <% end %><br />
+            <p class="title"><%= m.title %></p>
+        <% end %>
     </div>
   </div>
 </div>

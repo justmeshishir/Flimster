@@ -18,6 +18,7 @@ $(function(){
         let container = $('#movies');
         let htmlString ="";
         container.empty();
+        $('#reviewed-movies').empty();
         if (data["Response"] == "False") {
             htmlString = `<div class="alert alert-danger text-center" role="alert">${data["Error"]}</div>`
         }
@@ -36,9 +37,10 @@ $(function(){
         let container1 = $('#movies');
         let htmlString1;
         container1.empty();
+        $('#reviewed-movies').empty();
               htmlString1 = 
               `<div class="movie-poster">
-              <img src=${data["Poster"] == "N/A" ? "../../../public/images/movies.jpg" : data["Poster"]} class="img-responsive center-block" />
+              <img src=${data["Poster"] == "N/A" ? "../../../movies.jpg" : data["Poster"]} class="img-responsive center-block" />
              </div>
              <div class="movie-detail">
                       <p class="title">${data["Title"]}</p>

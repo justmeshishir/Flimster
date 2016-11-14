@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workspace</title>
+  <title>Flimting</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
@@ -19,7 +19,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Flimting</a>
+      <%= link_to 'Flimting',  root_path, class:"navbar-brand" %>
     </div>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
@@ -32,7 +32,8 @@
       </ul>
   </div><!-- /.container-fluid -->
 </nav>
-<%= yield %>
-
+<div class="container">
+  <%= yield %>
+</div>
 </body>
 </html>

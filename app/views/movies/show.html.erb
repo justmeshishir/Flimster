@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <div id="movie">
+            <div class="col-xs-6 col-md-4">
+                <%= image_tag @movie.poster %><br />
+            </div>
+            <div class="col-xs-6 col-md-4">
+                <p class="title"><%= @movie.title %></p><br />
+                <label>Year: </label><%= @movie.year %><br />
+                <label>Rated: </label><%= @movie.rated %><br />
+                <label>Released: </label><%= @movie.released %><br />
+                <label>Runtime: </label><%= @movie.runtime %><br />
+                <label>Genre: </label><%= @movie.genre %><br />
+                <label>Director: </label><%= @movie.director %><br />
+                <label>Writer: </label><%= @movie.writer %><br />
+                <label>Actors: </label><%= @movie.actors %><br />
+                <label>Plot: </label><%= @movie.plot %><br />
+                <label>Language: </label><%= @movie.language %><br />
+                <label>Country: </label><%= @movie.country %><br />
+                <label>Awards: </label><%= @movie.awards %><br /><br />
+                <label>Reviews: </label><br />
+                <% if @reviewed %> 
+                    <% @movie.reviews.each do |review| %>
+                        <%= review.comment %><br />
+                    <% end %>
+                <% else %>
+                    <form id="rating-form" action="/reviews" method="POST">
+                      <input type="hidden" name="imdbid" value="<%= @movie.imdbid %>" />
+                      <textarea name= "review[comment]" class="form-control" placeholder="Your movie review"></textarea>
+                      <br />
+                      <input type="submit" class="btn btn-success pull-right" />        
+                    </form>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

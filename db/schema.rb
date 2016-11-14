@@ -11,18 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110132440) do
+ActiveRecord::Schema.define(version: 20161112110215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "flims", force: :cascade do |t|
-    t.text     "name"
-    t.text     "genre"
-    t.integer  "rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "movies", force: :cascade do |t|
     t.string   "title"

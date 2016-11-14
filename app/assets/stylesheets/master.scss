@@ -21,9 +21,26 @@ $tertiary_font: 'Noto Serif', serif;
     font-weight: bold;
 }
 
-.movie-detail .title
+.title
 {
     font-family: $primary_font;
     font-size: 30px;
     color: #6e36c9;
+}
+
+.reviewed-movies-img
+{
+    height: 300px;
+    width: 300px;
+}
+
+.navbar-brand
+{
+    font-family: $secondary_font;
+    font-size: 24px;
+}
+
+.navbar-brand:hover
+{
+    color: blue;
 }
