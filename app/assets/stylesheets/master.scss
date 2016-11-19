@@ -2,17 +2,17 @@ $primary_font: 'Itim', cursive;
 $secondary_font: 'Indie Flower', cursive;
 $tertiary_font: 'Noto Serif', serif;
 
-
-.movie-poster
+#movies
 {
-    height:auto;
-    width:auto;
-    float: left;
+    height: auto;
+    margin: 0 auto;
+}
+.movie-poster img
+{
+    width: 100%;   
 }
 .movie-detail
 {
-    float: left;
-    margin: 20px;
     font-family: $tertiary_font;
 }
 
@@ -28,12 +28,16 @@ $tertiary_font: 'Noto Serif', serif;
     color: #6e36c9;
 }
 
-.reviewed-movies-img
+.box
 {
-    height: 300px;
-    width: 300px;
+    margin: 5px;
+    width: 214px;
 }
 
+.box img
+{
+    width: 100%;
+}
 .navbar-brand
 {
     font-family: $secondary_font;

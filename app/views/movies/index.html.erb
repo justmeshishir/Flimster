@@ -1,4 +1,4 @@
-<div class="row">
+
   <div class="col-xs-12 col-md-4">
     <h1 class="text-center">Find Movies</h1>
 
@@ -14,16 +14,17 @@
     </div>
   </div>
 
+
   <div class="col-xs-12 col-md-8">
-    <div id="movies">
-    </div>
-    <div id="reviewed-movies">
-            <% @movies.each do |m| %>
+    <div id="movies" class="transitions-enabled">
+      <% @movies.each do |m| %>
+        <div class="box panel panel-default">
                 <%= link_to movie_path(m.id) do %>
                    <%= image_tag m.poster, class:"reviewed-movies-img" %>
-                <% end %><br />
-            <p class="title"><%= m.title %></p>
-        <% end %>
+                <% end %>
+              <span class="title"><%= m.title %></span>
+        </div>
+      <% end %>
     </div>
+    
   </div>
-</div>

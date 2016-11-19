@@ -1,6 +1,13 @@
 /* global $ */
 /* global id */
 $(function(){
+    
+    $('#movies').imagesLoaded(function(){
+        $('#movies').masonry({
+            itemSelector: '.box',
+            isFitWidth: true
+        });
+    });
     let form = $('#movie-search');
     form.submit(function(e){
         $.ajax({
@@ -18,29 +25,30 @@ $(function(){
         let container = $('#movies');
         let htmlString ="";
         container.empty();
-        $('#reviewed-movies').empty();
         if (data["Response"] == "False") {
             htmlString = `<div class="alert alert-danger text-center" role="alert">${data["Error"]}</div>`
         }
         else {
             data["Search"].forEach(function(movie){
-              htmlString += `<img src=${movie["Poster"] == "N/A" ? "../../../public/images/movies.jpg" : movie["Poster"]} data-id="${movie['imdbID']}" />
+              htmlString += `<img class="movie-container-img" src=${movie["Poster"] == "N/A" ? "assets/movies.jpg" : movie["Poster"]} data-id="${movie['imdbID']}" />
                        <p>${movie["Title"]}</p>
                        <p>${movie["Year"]}</p>`;
             });
             container.append(htmlString);
+            
         }
     }
     
     function displayMovie(data)
     {
-        let container1 = $('#movies');
-        let htmlString1;
-        container1.empty();
-        $('#reviewed-movies').empty();
-              htmlString1 = 
+        
+        let container = $('#movies');
+        let htmlString;
+        container.empty();
+        
+              htmlString = 
               `<div class="movie-poster">
-              <img src=${data["Poster"] == "N/A" ? "../../../movies.jpg" : data["Poster"]} class="img-responsive center-block" />
+              <img src=${data["Poster"] == "N/A" ? "assets/movies.jpg" : data["Poster"]} class="img-responsive center-block" />
              </div>
              <div class="movie-detail">
                       <p class="title">${data["Title"]}</p>
@@ -56,12 +64,12 @@ $(function(){
               <br />
               <input type="submit" class="btn btn-success pull-right" />
             </form>`;
-        container1.append(htmlString1);
+        container.append(htmlString);
     }
     
-    $('#movies').on('click', 'img', function(e){
+    $('#movies').on('click', '.movie-container-img', function(e){
       let id = $(e.target).data('id');
-
+      alert(id);
       $.ajax({
         url: `https://www.omdbapi.com/?`,
         data: {i: id}
@@ -73,6 +81,5 @@ $(function(){
     });
     
   });
-  
   
   

@@ -51,3 +51,7 @@ gem 'devise'
 gem 'carrierwave'
 
 gem 'omdb-api'
+
+gem 'imagesLoaded_rails'
+
+gem 'masonry-rails', '~>0.2.0'
