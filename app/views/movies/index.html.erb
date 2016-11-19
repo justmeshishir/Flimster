@@ -22,7 +22,10 @@
                 <%= link_to movie_path(m.id) do %>
                    <%= image_tag m.poster, class:"reviewed-movies-img" %>
                 <% end %>
-              <span class="title"><%= m.title %></span>
+                <div class="panel-body">
+                  <span class="title"><%= m.title %></span><br />
+                  <span><%= m.year %></span>
+                </div>
         </div>
       <% end %>
     </div>
