@@ -21,7 +21,7 @@
                 <label>Reviews: </label><br />
                 <% if @reviewed %> 
                     <% @movie.reviews.each do |review| %>
-                        <%= review.comment %><br />
+                        <%= review.comment %> by <i><%= review.user.username %></i><br />
                     <% end %>
                 <% else %>
                     <form id="rating-form" action="/reviews" method="POST">

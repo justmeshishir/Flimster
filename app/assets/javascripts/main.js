@@ -29,13 +29,23 @@ $(function(){
             htmlString = `<div class="alert alert-danger text-center" role="alert">${data["Error"]}</div>`
         }
         else {
-            data["Search"].forEach(function(movie){
-              htmlString += `<img class="movie-container-img" src=${movie["Poster"] == "N/A" ? "assets/movies.jpg" : movie["Poster"]} data-id="${movie['imdbID']}" />
-                       <p>${movie["Title"]}</p>
-                       <p>${movie["Year"]}</p>`;
+                data["Search"].forEach(function(movie){
+                  htmlString += `<div class="box panel panel-default">
+                  <img class="movie-container-img" src=${movie["Poster"] == "N/A" ? "assets/movies.jpg" : movie["Poster"]} data-id="${movie['imdbID']}" />
+                           <div class="panel-body">
+                               <p>${movie["Title"]}</p>
+                               <p>${movie["Year"]}</p>
+                            </div>
+                    </div>`;
+                });
+                container.append(htmlString);
+                container.masonry('reloadItems');
+                 container.imagesLoaded(function(){
+                    container.masonry({
+                    itemSelector: '.box',
+                    isFitWidth: true
+                });
             });
-            container.append(htmlString);
-            
         }
     }
     
@@ -47,9 +57,12 @@ $(function(){
         container.empty();
         
               htmlString = 
-              `<div class="movie-poster">
+              `<div class="col-xs-6 col-md-4">
+              <div class="movie-poster">
               <img src=${data["Poster"] == "N/A" ? "assets/movies.jpg" : data["Poster"]} class="img-responsive center-block" />
              </div>
+             </div>
+             <div class="col-xs-6 col-md-8">
              <div class="movie-detail">
                       <p class="title">${data["Title"]}</p>
                       <label>Year: </label> <p>${data["Year"]}</p>
@@ -63,13 +76,13 @@ $(function(){
               <textarea name= "review[comment]" class="form-control" placeholder="Your movie review"/>
               <br />
               <input type="submit" class="btn btn-success pull-right" />
-            </form>`;
+            </form>
+            </div>`;
         container.append(htmlString);
     }
     
     $('#movies').on('click', '.movie-container-img', function(e){
       let id = $(e.target).data('id');
-      alert(id);
       $.ajax({
         url: `https://www.omdbapi.com/?`,
         data: {i: id}
@@ -79,7 +92,7 @@ $(function(){
         });
         e.preventDefault();
     });
-    
+       
   });
   
   
