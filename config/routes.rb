@@ -57,4 +57,6 @@ Rails.application.routes.draw do
   
   resources :reviews
   resources :movies
+  resources :users, only: :show
+  
 end

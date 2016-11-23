@@ -8,10 +8,10 @@ class ReviewsController < ApplicationController
         
         if @review.save
           flash[:success] = "Review saved!"
-          redirect_to root_path
+          redirect_to movie_path(@movie.id)
         else
           flash[:alert] = "Woops! It seems there was an error."
-          redirect_to root_path
+          redirect_to movie_path(@movie.id)
         end
     end
     
