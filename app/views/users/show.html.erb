@@ -1,16 +1,28 @@
 <%= image_tag @user.avatar, class: 'prof-pic-lg' %>
 <h1 class="text-center"><%= @user.email %></h1>
 <p class="text-center lead"><%= @user.introduction %></p>
-
+<% if current_user.following?(@user) %>
+  <%= link_to 'Following', user_relationship_path(@user.id,@user.id), class: 'btn unfollow-button', remote: true, id: 'unfollow-button', method: :delete %>
+<% else %>
+  <%= link_to 'Follow', user_relationships_path(@user.id), class: 'btn follow-button', remote: true, id: 'follow-button', method: :post %>
+<% end %>
 <ul class="user-stats">
   <li>
     <div class="number-label">Reviews</div>
     <div class="number-value"><%= @user.reviews.count %></div>
   </li> 
+  <li id="user-followers">
+    <div class="number-label">Followers</div>
+    <div class="number-value"></div>
+  </li> 
+  <li id="user-following">
+    <div class="number-label">Followings</div>
+    <div class="number-value"></div>
+  </li>
 </ul>
 <div id="movies" class="transitions-enabled">
       <% @movies.each do |m| %>
-        <% if current_user.reviewed?(m) %>
+        <% if @user.reviewed?(m) %>
           <div class="box panel panel-default">
             <%= link_to movie_path(m.id) do %>
                <%= image_tag m.poster, class:"reviewed-movies-img" %>
@@ -25,5 +37,5 @@
     </div>
 
 <script type="text/javascript">
-    
+     
 </script>
