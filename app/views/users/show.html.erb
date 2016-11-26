@@ -1,11 +1,9 @@
 <%= image_tag @user.avatar, class: 'prof-pic-lg' %>
 <h1 class="text-center"><%= @user.email %></h1>
 <p class="text-center lead"><%= @user.introduction %></p>
-<% if current_user.following?(@user) %>
-  <%= link_to 'Following', user_relationship_path(@user.id,@user.id), class: 'btn unfollow-button', remote: true, id: 'unfollow-button', method: :delete %>
-<% else %>
-  <%= link_to 'Follow', user_relationships_path(@user.id), class: 'btn follow-button', remote: true, id: 'follow-button', method: :post %>
-<% end %>
+<span id="follow-button">
+  <%= render partial: 'follows', locals: {user: @user} %>
+</span>
 <ul class="user-stats">
   <li>
     <div class="number-label">Reviews</div>
@@ -37,5 +35,11 @@
     </div>
 
 <script type="text/javascript">
-     
+  let userData = {};
+  $.ajax({
+    
+  })
+  .done(function(data){
+    userData = data;
+  });
 </script>
