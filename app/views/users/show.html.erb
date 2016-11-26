@@ -11,11 +11,11 @@
   </li> 
   <li id="user-followers">
     <div class="number-label">Followers</div>
-    <div class="number-value"></div>
+    <div class="number-value"><%= @user.followed_relationships.count %></div>
   </li> 
   <li id="user-following">
     <div class="number-label">Followings</div>
-    <div class="number-value"></div>
+    <div class="number-value"><%= @user.following_relationships.count %></div>
   </li>
 </ul>
 <div id="movies" class="transitions-enabled">

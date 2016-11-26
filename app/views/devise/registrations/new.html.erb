@@ -26,7 +26,7 @@
   
   <div class="field">
     <%= f.label 'Profile Picture' %><br>
-    <%= f.file_field :avatar %>
+    <%= f.file_field :avatar, autocomplete: "off" %>
   </div>  
   <div class="actions">
     <%= f.submit "Sign up" %>
