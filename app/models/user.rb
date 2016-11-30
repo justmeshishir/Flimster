@@ -10,8 +10,7 @@ class User < ActiveRecord::Base
   has_many :following_users, through: :following_relationships, source: :followed
   has_many :followed_users, through: :followed_relationships, source: :follower
   def reviewed?(movie)
-    return true if reviews.exists?(movie_id: movie.id)
-    false
+    reviews.exists?(movie_id: movie.id)
   end
   
   def follow(other_user)  
@@ -19,8 +18,7 @@ class User < ActiveRecord::Base
   end
   
   def unfollow(other_user)
-    
-following_relationships.find_by(followed_id: other_user.id).destroy
+    following_relationships.find_by(followed_id: other_user.id).destroy
   end
   
   

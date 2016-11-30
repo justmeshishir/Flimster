@@ -5,7 +5,7 @@
   <%= render partial: 'follows', locals: {user: @user} %>
 </span>
 <ul class="user-stats">
-  <li>
+  <li id="user-reviews">
     <div class="number-label">Reviews</div>
     <div class="number-value"><%= @user.reviews.count %></div>
   </li> 
@@ -35,11 +35,107 @@
     </div>
 
 <script type="text/javascript">
-  let userData = {};
+$(function(){
+   $('#movies').imagesLoaded(function(){
+        $('#movies').masonry({
+            itemSelector: '.box',
+            isFitWidth: true
+        });
+    });
+  let userId = <%= params[:id] %>;
+  let userData = {};  
+
   $.ajax({
-    
+    url: `/users/${userId}.json`,
+    type: "GET"
   })
   .done(function(data){
     userData = data;
+    console.log(userData)
   });
+
+  $('#user-followers').on('click', function(e){
+    getFollower();
+  });
+  
+  $('#user-following').on('click', function(e){  
+      getFollowing();
+  });
+  
+  $('#user-reviews').on('click', function(e){  
+      getReviews();
+  });
+  
+  function getFollowing()
+  {
+    let container = $('#movies');
+        let htmlString ="";
+        if (userData.following_relationships.length > 0) {
+                userData.following_relationships.forEach(function(users){
+                  console.log(users);
+                  htmlString += `<div class="box panel panel-default">
+                  <img class="prof-pic-sm" src=${users.user.avatar_url} />
+                               <p>${users.user.username}</p>
+                    </div>`;
+                });
+        }
+        else
+        {
+          htmlString = "<h3 class='text-center'>This user has not followed any users yet</h3>";
+        }
+        container.empty();
+        container.append(htmlString);
+  }
+  
+  function getFollower()
+  {
+    let container = $('#movies');
+        let htmlString ="";
+        if (userData.followed_relationships.length > 0) {
+                userData.followed_relationships.forEach(function(users){
+                  console.log(users);
+                  htmlString += `<div class="box panel panel-default">
+                  <img class="prof-pic-sm" src=${users.user.avatar_url} />
+                               <p>${users.user.username}</p>
+                    </div>`;
+                });
+        }
+        else
+        {
+          htmlString = "<h3 class='text-center'>This user has not been followed by any users yet</h3>";
+        }
+        container.empty();
+        container.append(htmlString);
+  }
+  
+  function getReviews()
+  {
+    let container = $('#movies');
+    let htmlString ="";
+    if (userData.reviews.length > 0) {
+                userData.reviews.forEach(function(review){
+                  console.log(review);
+                  htmlString += `<div class="box panel panel-default">
+                  <img class="prof-pic-sm" src=${review.movie.poster} />
+                               <p>${review.movie.title}</p>
+                               <p>${review.movie.year}</p>
+                    </div>`;
+                });
+        }
+        else
+        {
+          htmlString = "<h3 class='text-center'>This user has not reviewed any movies yet</h3>";
+        }
+        container.empty();
+        container.append(htmlString);
+        container.masonry('reloadItems');
+                 container.imagesLoaded(function(){
+                    container.masonry({
+                    itemSelector: '.box',
+                    isFitWidth: true
+                });
+            });
+  }
+})
+  
 </script>
