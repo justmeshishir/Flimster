@@ -21,9 +21,19 @@
                 <label>Reviews: </label><br />
                 <% if @reviewed %> 
                     <% @movie.reviews.each do |review| %>
-                        <%= review.comment %> by <i><%= review.user.username %></i><br />
+                        <blockquote><p><%= review.comment %></p> <i><%=link_to review.user.username, user_path(review.user.id) %></i></blockquote>
+                        <span id="likes_container_<%= review.id %>" class="badge">
+                          <%= render partial: 'likes', locals: {review: review} %>
+                        </span>
                     <% end %>
                 <% else %>
+                    <% @movie.reviews.each do |review| %>
+                        <blockquote><p><%= review.comment %></p> <i><%=link_to review.user.username, user_path(review.user.id) %></i></blockquote>
+                        <span id="likes_container_<%= review.id %>" class="badge">
+                          <%= render partial: 'likes', locals: {review: review} %>
+                        </span>
+                        <br /><br />
+                    <% end %>
                     <form id="rating-form" action="/reviews" method="POST">
                       <input type="hidden" name="authenticity_token" value=${window._token} />
                       <input type="hidden" name="imdbid" value="<%= @movie.imdbid %>" />

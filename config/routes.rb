@@ -55,9 +55,12 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   
-  resources :reviews
+  resources :reviews do
+    resources :votes, only: [:create, :destroy]
+  end
   resources :movies
   resources :users, only: :show do
     resources :relationships, only: [:create, :destroy]
   end
+  
 end

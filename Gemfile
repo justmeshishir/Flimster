@@ -42,6 +42,8 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  
+  gem 'pry-rails', '~> 0.3.4'
 end
 
 gem 'bootstrap-sass', '~> 3.3.6'
@@ -55,3 +57,6 @@ gem 'omdb-api'
 gem 'imagesLoaded_rails'
 
 gem 'masonry-rails', '~>0.2.0'
+
+gem 'font-awesome-sass', '~> 4.6.2'
+
