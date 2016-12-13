@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: '"Flimting" <shishirthapa1@gmail.com>'
+  default from: '"Flimting" <incdecoder@gmail.com>'
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
