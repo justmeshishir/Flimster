@@ -1,0 +1,49 @@
+<h1 class="text-center">Timeline</h1>
+<div id="movies">
+</div>
+
+<script type="text/javascript">
+    $(function(){
+       $('#movies').imagesLoaded(function(){
+            $('#movies').masonry({
+                itemSelector: '.box',
+                isFitWidth: true
+        });
+    });
+    
+   $.ajax({
+      url: "/timeline.json",
+      type: "GET"
+    })
+    .done(function(data){
+      // data is a reviews array with review.user.username, review.movie, review.comment
+      displayTimeline(data);
+    });
+    function displayTimeline(dataObject) {
+      let $container = $("#movies");
+      let htmlString = "";
+
+      dataObject.reviews.forEach(function(review) {
+        htmlString += `
+        <div class="box panel panel-default">
+          <a href="/movies/${review.movie.id}" >
+            <img class="img-responsive center-block" src=${ review["movie"]["poster"] == "N/A" ? "assets/movies.jpg" : review["movie"]["poster"] }/>
+          </a>
+            <h3>${review.movie.title}</h3>
+            <blockquote><p>${review.comment}</p></blockquote>
+            <p><a href="/users/${review.user.id}">${review.user.username}</a></p>
+        </div>
+        `;
+      });
+
+      $container.empty();
+      $container.append(htmlString);
+
+      $container.masonry( 'reloadItems' );
+      
+      $container.imagesLoaded(function(){
+        $container.masonry( 'layout' );
+      });
+    }
+  });
+</script>
