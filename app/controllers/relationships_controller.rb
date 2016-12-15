@@ -4,7 +4,6 @@ class RelationshipsController < ApplicationController
     
     def create
         current_user.follow(@user)
-        
         UserMailer.followedMsg(@user, current_user).deliver_now
         
         respond_to do |format|

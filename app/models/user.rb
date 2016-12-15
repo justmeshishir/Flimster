@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :following_users, through: :following_relationships, source: :followed
   has_many :followed_users, through: :followed_relationships, source: :follower
   has_many :votes
+  delegate :username, to: :user, prefix: true
+
   def reviewed?(movie)
     reviews.exists?(movie_id: movie.id)
   end
