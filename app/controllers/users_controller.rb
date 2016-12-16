@@ -5,6 +5,6 @@ class UsersController < ApplicationController
     end
     
     def timeline
-        @reviews = Review.where(user_id: current_user.following_users).order("created_at DESC")
+        @reviews = current_user.reviews.order("created_at DESC")
     end
 end
