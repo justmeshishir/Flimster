@@ -21,7 +21,7 @@
             <h1 class="text-left">Recent Reviews</h1>
             <% @recent_reviews.each do |review| %>
                 <p class="comment"><%= review.comment %></p>
-                -<%=link_to review.user.username.capitalize, user_path(review.user.id) %> in <%=link_to review.movie.title, movie_path(review.movie.id) %><br /><br />
+                -<%=link_to review.user_name.capitalize, user_path(review.user_id) %> in <%=link_to review.movie_title, movie_path(review.movie_id) %><br /><br />
             <hr />
             <% end %>
         </div>
