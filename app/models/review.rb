@@ -4,19 +4,6 @@ class Review < ActiveRecord::Base
   has_many :votes
   validate :user, :movie, :comment
   scope :recent, -> {order("created_at DESC").limit(5)}
-    def user_name
-       user.username 
-    end
-    
-    def user_id
-      user.id
-    end
-    
-    def movie_title
-       movie.title 
-    end
-    
-    def movie_id
-       movie.id 
-    end
+  delegate :username, :id, to: :user, prefix: true
+  delegate :title, :id, to: :movie, prefix: true  
 end
